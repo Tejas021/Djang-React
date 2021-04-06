@@ -17,7 +17,6 @@ import TeacherUI from './components/Teacher/TeacherUI'
 
 
 
-
 function App() {
   return (
     <div className="App">

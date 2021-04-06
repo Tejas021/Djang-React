@@ -1,47 +1,34 @@
 import React from 'react'
-import {useState,useEffect} from 'react'
-// import axios from 'axios'
 
 
 
-   
-    // const data =  axios.get('http://localhost:8000/api/studenttable/').then((res)=>res.json())
-//    let data2
-//     axios.get('http://localhost:8000/api/studenttable/')
-//     .then(res => {
-//         data2 = res.data2;
-//         console.log(data2)
-//     })
-//     .catch(err => {})
-   
-// const t=fetch('https://jsonplaceholder.typicode.com/todos/1')
-//   .then(response => response.json())
-//   .then(json => console.log(json))
-
-
-// const data=[{'id':1,'name':'tejas' ,'marks':20},{'id':2,'name':'tejas' ,'marks':20},{'id':3,'name':'tejas' ,'marks':20}]
-
-const TeacherTable = () => {
-    const [marks, setMarks] = useState([])
-
-    useEffect(() => {
-        const getMarks = async () => {
-          const tasksFromServer = await fetchMarks()
-          setMarks(tasksFromServer)
-        }
-        getMarks()
-      }, [])
-
-      const fetchMarks = async () => {
-        const data = await fetch('http://localhost:8000/api/teachertable/').then((res)=>res.json())
-        return data
-      }
+const TeacherTable = ({marks,renderForm,addForm}) => {
     
-    
+    let text=addForm?'Close':'New'
     return (
         
         <div>
             <div className="TableCont">
+
+
+
+            <div className="container-fluid">
+        <div className="row">
+            <div className="col-lg-5 col-xs-5 ">
+                <h4 style={{margin: "20px",textAlign:'left'}}>Table 1:</h4>
+            </div>
+
+            <div className="col-lg-7 col-xs-7">
+                <button type="button" className="btn btn-outline-success buttons" onClick={renderForm} >
+                   {text}
+                </button>
+                <button type="button" className="btn btn-outline-success buttons">Edit</button>
+            </div>
+        </div>
+    </div>
+
+
+
             <div className="table-responsive">
     <table className="table table-bordered table-dark">
       <thead>

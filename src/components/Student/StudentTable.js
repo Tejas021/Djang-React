@@ -1,41 +1,11 @@
-import {useState,useEffect} from 'react'
 
 
-const StudentTable = () => {
-    
-    
-    const [marks, setMarks] = useState([]);
 
-    useEffect(() => {
-     const getMarks=async()=>{
-         const marks=await FecthMarks()
-         setMarks(marks)
-     }
-     getMarks()
-        },[])
-    const FecthMarks= async ()=>{
-        const data = fetch('http://localhost:8000/api/studenttable/').then((res)=>res.json())
-        return data
-    }
+const StudentTable = ({subject,add,showAdd}) => {
+ 
+    const marks=subject
+  let text=showAdd ? 'Close':'New'
 
-    // const [marks, setMarks] = useState([]);
-
-    // useEffect(() => {
-    //     const getMarks = async () => {
-    //       const tasksFromServer = await fetchMarks()
-    //       setMarks(tasksFromServer)
-    //     }
-    //     getMarks()
-    //   }, [])
-
-    //   const fetchMarks = async () => {
-    //     const data = await fetch('http://localhost:8000/api/studenttable/').then((res)=>res.json())
-    //     return data
-    //   }
-    
-    
-    
-    
     return (
         <div>
              <div className="TableCont">
@@ -48,7 +18,9 @@ const StudentTable = () => {
             </div>
 
             <div className="col-lg-7 col-xs-7">
-                <button type="button" className="btn btn-outline-success buttons">New</button>
+                <button type="button" className="btn btn-outline-success buttons" onClick={add}>
+                    {text}
+                </button>
                 <button type="button" className="btn btn-outline-success buttons">Edit</button>
             </div>
         </div>
@@ -86,7 +58,7 @@ const StudentTable = () => {
 
             {
                 marks.map((mark)=>(
-                    <tr>
+                    <tr key={mark.id}>
                     <th scope="row">{mark.subject}</th>
                     <td>{mark.ia1}</td>
                     <td>20</td>
